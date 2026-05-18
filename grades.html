@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="rtl_styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grades - Bristol Language School</title>
+    <link rel="icon" type="image/png" href="MY DATA/craiyon_045154_image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===========================
+           Page Header
+        =========================== */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #283593 100%);
+            color: var(--white);
+            padding: 70px 0 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            width: 350px; height: 350px;
+            background: rgba(212,175,55,0.08);
+            border-radius: 50%;
+            top: -100px; right: -100px;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            width: 250px; height: 250px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            bottom: -80px; left: -80px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h1 span {
+            color: var(--secondary-color);
+        }
+
+        .page-header p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===========================
+           Search Section
+        =========================== */
+        .grades-section {
+            padding: 60px 0;
+            background: var(--light-gray);
+            min-height: 60vh;
+        }
+
+        .search-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(26,35,126,0.1);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        .search-card .search-icon-wrap {
+            width: 70px; height: 70px;
+            background: linear-gradient(135deg, var(--primary-color), #3949ab);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .search-card .search-icon-wrap i {
+            font-size: 30px;
+            color: var(--secondary-color);
+        }
+
+        .search-card h2 {
+            color: var(--primary-color);
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .search-card p {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .search-input-group {
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+        }
+
+        .search-input-group input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 15px;
+            font-family: var(--main-font);
+            outline: none;
+            transition: border-color 0.3s;
+            text-align: center;
+            letter-spacing: 1px;
+            direction: ltr;
+        }
+
+        .search-input-group input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, var(--secondary-color), #c9a227);
+            color: var(--primary-color);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: var(--main-font);
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212,175,55,0.4);
+        }
+
+        /* ===========================
+           Error Message
+        =========================== */
+        .error-msg {
+            display: none;
+            background: #fff3f3;
+            border: 1px solid #ffcdd2;
+            border-radius: 10px;
+            padding: 14px 20px;
+            color: #c62828;
+            font-size: 14px;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .error-msg.show { display: block; }
+
+        /* ===========================
+           Result Card
+        =========================== */
+        .result-wrapper {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: slideUp 0.5s ease;
+        }
+
+        .result-wrapper.show { display: block; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(26,35,126,0.12);
+        }
+
+        /* Student Header */
+        .student-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #283593 100%);
+            padding: 28px 32px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .student-avatar {
+            width: 65px; height: 65px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .student-avatar i {
+            font-size: 28px;
+            color: var(--primary-color);
+        }
+
+        .student-info h3 {
+            color: var(--white);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .student-info .meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .student-info .meta span {
+            color: rgba(255,255,255,0.75);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .student-info .meta span i {
+            color: var(--secondary-color);
+            font-size: 12px;
+        }
+
+        /* Result Badge */
+        .result-badge-section {
+            padding: 24px 32px;
+            background: #f8f9ff;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .result-badge.pass {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 2px solid #a5d6a7;
+        }
+
+        .result-badge.fail {
+            background: #ffebee;
+            color: #c62828;
+            border: 2px solid #ef9a9a;
+        }
+
+        .total-score {
+            text-align: center;
+        }
+
+        .total-score .score-num {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .total-score .score-label {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        /* Subjects Grid */
+        .subjects-section {
+            padding: 28px 32px;
+        }
+
+        .subjects-section h4 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #999;
+            margin-bottom: 18px;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 14px;
+        }
+
+        .subject-item {
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid #eef0ff;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .subject-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(26,35,126,0.08);
+        }
+
+        .subject-item .subj-name {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .subject-item .subj-score-row {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .subject-item .subj-score {
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .subject-item .subj-max {
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        .subject-item .subj-bar-bg {
+            height: 5px;
+            background: #e8eaf6;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .subject-item .subj-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--primary-color), #5c6bc0);
+            transition: width 0.8s ease;
+        }
+
+        .subject-item .subj-bar-fill.high { background: linear-gradient(90deg, #2e7d32, #66bb6a); }
+        .subject-item .subj-bar-fill.mid  { background: linear-gradient(90deg, #e65100, #ffa726); }
+        .subject-item .subj-bar-fill.low  { background: linear-gradient(90deg, #c62828, #ef5350); }
+
+        /* Print / New Search buttons */
+        .result-actions {
+            padding: 20px 32px;
+            background: #f8f9ff;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-action {
+            padding: 11px 26px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            font-family: var(--main-font);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-action.primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-action.primary:hover {
+            background: #283593;
+            transform: translateY(-2px);
+        }
+
+        .btn-action.outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-action.outline:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* ===========================
+           RTL Support
+        =========================== */
+        body.rtl .search-input-group {
+            flex-direction: row-reverse;
+        }
+
+        body.rtl .student-header {
+            flex-direction: row-reverse;
+        }
+
+        body.rtl .student-info h3,
+        body.rtl .student-info .meta {
+            text-align: right;
+        }
+
+        body.rtl .result-badge-section {
+            flex-direction: row-reverse;
+        }
+
+        body.rtl .subjects-section h4,
+        body.rtl .subject-item .subj-name {
+            text-align: right;
+        }
+
+        body.rtl .subject-item .subj-score-row {
+            flex-direction: row-reverse;
+        }
+
+        body.rtl .subj-bar-fill {
+            background: linear-gradient(270deg, var(--primary-color), #5c6bc0);
+        }
+
+        body.rtl .subj-bar-fill.high { background: linear-gradient(270deg, #2e7d32, #66bb6a); }
+        body.rtl .subj-bar-fill.mid  { background: linear-gradient(270deg, #e65100, #ffa726); }
+        body.rtl .subj-bar-fill.low  { background: linear-gradient(270deg, #c62828, #ef5350); }
+
+        /* ===========================
+           Responsive
+        =========================== */
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 28px; }
+
+            .search-card { padding: 28px 20px; }
+
+            .search-input-group { flex-direction: column; }
+
+            .search-btn { border-radius: 50px; }
+
+            .student-header { padding: 20px; flex-wrap: wrap; }
+
+            .result-badge-section { flex-direction: column; text-align: center; }
+
+            .subjects-section { padding: 20px; }
+
+            .subjects-grid { grid-template-columns: repeat(2, 1fr); }
+
+            .result-actions { padding: 16px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .subjects-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .subject-item { padding: 12px; }
+            .subject-item .subj-score { font-size: 22px; }
+        }
+
+        @media print {
+            .top-bar, .header, .result-actions, .search-card, .back-to-top { display: none !important; }
+            .result-wrapper { display: block !important; }
+            .grades-section { padding: 10px 0; background: white; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+    <div class="container">
+        <div class="slogan" data-translate="topBar.slogan">Learning, Sharing and Growing Together</div>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ar">AR</button>
+        </div>
+        <div class="social-links">
+            <a href="https://www.facebook.com/share/1DAwFXqKfG/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@bristol.schools?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <img src="MY DATA/craiyon_045154_image.png" alt="Bristol School Logo">
+        </div>
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index.html" data-translate="nav.home">Home</a></li>
+                <li class="dropdown">
+                    <a href="about.html"><span data-translate="nav.about">About Us</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about.html#who-we-are" data-translate="nav.whoWeAre">Who We Are</a></li>
+                        <li><a href="about.html" data-translate="nav.moreAbout">More About</a></li>
+                    </ul>
+                </li>
+                <li><a href="admission.html" data-translate="nav.admission">Admission</a></li>
+                <li><a href="learning.html" data-translate="nav.learning">Learning</a></li>
+                <li class="dropdown">
+                    <a href="#"><span data-translate="nav.schoolLife">School Life</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="gallery.html" data-translate="nav.gallery">Gallery</a></li>
+                    </ul>
+                </li>
+                <li><a href="faq.html" data-translate="nav.faq">FAQ</a></li>
+                <li><a href="contact.html" data-translate="nav.contact">Contact Us</a></li>
+                <li><a href="careers.html" data-translate="nav.careers">Careers</a></li>
+                <li><a href="grades.html" class="active" data-translate="nav.grades">Grades</a></li>
+            </ul>
+            <a href="admission.html" class="btn-apply mobile-only" data-translate="nav.applyNow">APPLY NOW</a>
+        </nav>
+        <a href="admission.html" class="btn-apply desktop-only" data-translate="nav.applyNow">APPLY NOW</a>
+        <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
+    </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+    <div class="container">
+        <h1 data-translate="grades.pageTitle">STUDENT <span>GRADES</span></h1>
+        <p data-translate="grades.pageSubtitle">Enter your National ID to view your results</p>
+    </div>
+</section>
+
+<!-- GRADES SECTION -->
+<section class="grades-section">
+    <div class="container">
+
+        <!-- Search Card -->
+        <div class="search-card scroll-animate">
+            <div class="search-icon-wrap">
+                <i class="fas fa-search"></i>
+            </div>
+            <h2 data-translate="grades.searchTitle">Search for Your Results</h2>
+            <p data-translate="grades.searchSubtitle">Enter your 14-digit National ID number below</p>
+
+            <div class="search-input-group">
+                <input
+                    type="text"
+                    id="nationalIdInput"
+                    maxlength="14"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    data-translate-placeholder="grades.inputPlaceholder"
+                    placeholder="Enter National ID / أدخل الرقم القومي"
+                >
+                <button class="search-btn" onclick="searchStudent()">
+                    <i class="fas fa-search"></i>
+                    <span data-translate="grades.searchBtn">Search</span>
+                </button>
+            </div>
+
+            <div class="error-msg" id="errorMsg">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="errorText">National ID not found. Please check and try again.</span>
+            </div>
+        </div>
+
+        <!-- Result -->
+        <div class="result-wrapper" id="resultWrapper">
+            <div class="result-card">
+
+                <!-- Student Header -->
+                <div class="student-header">
+                    <div class="student-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="student-info">
+                        <h3 id="resultName">—</h3>
+                        <div class="meta">
+                            <span><i class="fas fa-id-card"></i> <span id="resultId">—</span></span>
+                            <span><i class="fas fa-graduation-cap"></i> <span id="resultGrade" data-translate="grades.grade3">Grade 3</span></span>
+                            <span><i class="fas fa-calendar"></i> <span data-translate="grades.term1">Term 1 — 2025/2026</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Badge -->
+                <div class="result-badge-section">
+                    <div class="result-badge" id="resultBadge">
+                        <i class="fas fa-check-circle"></i>
+                        <span id="resultStatus">PASS</span>
+                    </div>
+                    <div class="total-score">
+                        <div class="score-num" id="resultTotal">—</div>
+                        <div class="score-label" data-translate="grades.outOf45">out of 45</div>
+                    </div>
+                </div>
+
+                <!-- Subjects -->
+                <div class="subjects-section">
+                    <h4 data-translate="grades.subjectsTitle">Subject Grades</h4>
+                    <div class="subjects-grid" id="subjectsGrid">
+                        <!-- filled by JS -->
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="result-actions">
+                    <button class="btn-action primary" onclick="window.print()">
+                        <i class="fas fa-print"></i>
+                        <span data-translate="grades.print">Print Result</span>
+                    </button>
+                    <button class="btn-action outline" onclick="resetSearch()">
+                        <i class="fas fa-redo"></i>
+                        <span data-translate="grades.newSearch">New Search</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer scroll-animate">
+    <div class="footer-widgets">
+        <div class="container">
+            <div class="footer-col">
+                <h4 data-translate="footer.aboutTitle">ABOUT US</h4>
+                <p data-translate="footer.aboutText">Bristol Language School (BLS) is a private language school located in New Damietta City, Egypt.</p>
+            </div>
+            <div class="footer-col scroll-animate" data-delay="0.2">
+                <h4 data-translate="footer.keepInTouch">KEEP IN TOUCH</h4>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/1DAwFXqKfG/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@bristol.schools?is_from_webapp=1&sender_device=pc"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <p class="address"><i class="fas fa-map-marker-alt"></i> First District, Damietta El-Gadeeda City, Egypt</p>
+            </div>
+            <div class="footer-col scroll-animate" data-delay="0.3">
+                <h4 data-translate="footer.contactTitle">CONTACT US</h4>
+                <p><i class="fas fa-envelope"></i> Bristollanguagesc@gmail.com<br><i class="fas fa-phone"></i> 01212881144</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <p data-translate="footer.copyright">Copyright © 2024 Bristol School. All Rights Reserved. Designed By KAREEM MOUSA</p>
+            <div class="footer-social">
+                <a href="https://www.facebook.com/share/1DAwFXqKfG/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@bristol.schools?is_from_webapp=1&sender_device=pc"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top"><i class="fas fa-chevron-up"></i></a>
+<div class="menu-overlay"></div>
+
+<!-- ==============================
+     STUDENT DATA (Grade 3)
+     ============================== -->
+<script>
+const studentsData = [
+  { id:"31612041100269", name:"آيسل أيمن السيد لطفى أبو النور",         arabic:5,    english:10,  math:5,    religion:5,    advanced:10,  second_lang:10   },
+  { id:"31607281100467", name:"آيسل ابراهيم ابراهيم ابراهيم طه الصواف", arabic:4,    english:9,   math:1.25, religion:4.75, advanced:9,   second_lang:10   },
+  { id:"31702271100283", name:"ايلين ايمن السيد احمد المنير",            arabic:4.5,  english:9,   math:5,    religion:4.75, advanced:10,  second_lang:10   },
+  { id:"31610011100741", name:"ايلين حسام محمد ابراهيم الطنطاوى",       arabic:5,    english:10,  math:5,    religion:5,    advanced:10,  second_lang:10   },
+  { id:"31609101100564", name:"أروي محمود عبدالله المتولي خيرالدين",     arabic:5,    english:10,  math:5,    religion:5,    advanced:10,  second_lang:10   },
+  { id:"31708261101387", name:"أسمى محمد يكن ابراهيم خالد",              arabic:4.75, english:9,   math:3.75, religion:4.75, advanced:7,   second_lang:8    },
+  { id:"31703111100046", name:"تاليا احمد حسن فاضل ابراهيم المتولى",    arabic:5,    english:10,  math:5,    religion:4.25, advanced:10,  second_lang:10   },
+  { id:"31606161100726", name:"تلا عاصم عطيه عطوه حامد الحوره",         arabic:5,    english:10,  math:5,    religion:5,    advanced:10,  second_lang:10   },
+  { id:"31703141100288", name:"حبيبه ثروت وفيق عبدالرحمن سلامه",        arabic:4.75, english:10,  math:4.75, religion:5,    advanced:9,   second_lang:10   },
+  { id:"31611021202425", name:"خديجه محمد حامد عبده ابراهيم",           arabic:4.5,  english:10,  math:3.5,  religion:4.5,  advanced:9.5, second_lang:10   },
+  { id:"31604121101042", name:"خديجه منير عبد المجيد احمد شلاطه",       arabic:4.25, english:10,  math:4.5,  religion:3.75, advanced:7.5, second_lang:10   },
+  { id:"31705221101148", name:"خديجه محمد محمد احمد احمد عامر",         arabic:5,    english:10,  math:4.75, religion:4.75, advanced:10,  second_lang:10   },
+  { id:"31703171100223", name:"رناس محمد ياسين سعدا",                    arabic:4.5,  english:8,   math:3.5,  religion:4.75, advanced:10,  second_lang:10   },
+  { id:"31707308801203", name:"رهف شادي حسن على على الشيخ",              arabic:5,    english:10,  math:5,    religion:4.75, advanced:10,  second_lang:10   },
+  { id:"31702281100206", name:"روفان محمد فايز ابو هبره",                arabic:null, english:null,math:null, religion:null, advanced:null,second_lang:null },
+  { id:"31701011108306", name:"ريتال علاء عبدالرحمن عبدالحميد بدران",   arabic:4.5,  english:10,  math:4.75, religion:5,    advanced:10,  second_lang:10   },
+  { id:"31704111100646", name:"ريفان احمد عبدالحليم محمد الشناوى",      arabic:4.75, english:10,  math:5,    religion:4.75, advanced:10,  second_lang:10   },
+  { id:"31701051100944", name:"ريماس اسلام جمال عبدالناصر سعد سليم",    arabic:4.75, english:10,  math:5,    religion:4.75, advanced:10,  second_lang:10   },
+  { id:"31609121100129", name:"زينه محمود علي محمد عزو",                 arabic:4.5,  english:9,   math:5,    religion:4.75, advanced:10,  second_lang:10   },
+  { id:"31702021100628", name:"سدره محمد عبد الله حمزه نوفل",            arabic:4.75, english:10,  math:4.25, religion:4,    advanced:8.5, second_lang:10   },
+  { id:"31706251200848", name:"سيلا محمد المهدي عبد الغني محمد",        arabic:4.75, english:8.5, math:4.5,  religion:4.75, advanced:9,   second_lang:9    },
+  { id:"31706201101482", name:"سيلا محمود محمد محمود خليل عكاش",        arabic:4.25, english:10,  math:5,    religion:4.5,  advanced:9,   second_lang:10   },
+  { id:"31608041203745", name:"صبا ايهاب سعيد على على القط",             arabic:4.75, english:9,   math:5,    religion:4.5,  advanced:6,   second_lang:9    },
+  { id:"31706011101184", name:"عاليا محمد علي محمد نصر الدين البساطي",  arabic:5,    english:10,  math:4.5,  religion:4.25, advanced:10,  second_lang:10   },
+  { id:"31709181100408", name:"فريدة عز الدين احمد عز الدين ناصف",      arabic:5,    english:8,   math:4.75, religion:4.5,  advanced:8.5, second_lang:10   },
+  { id:"31603021100727", name:"فريدة محمد على ظريف عياد",                arabic:3,    english:6,   math:2.5,  religion:2.75, advanced:8,   second_lang:9    },
+  { id:"31707251100165", name:"فريدة محمد محمود ابراهيم محمد الغزنوى",  arabic:4,    english:10,  math:4.75, religion:4.25, advanced:10,  second_lang:9    },
+  { id:"31607141101242", name:"فيروز عمرو عبد الفتاح عبدالله عامر",     arabic:5,    english:10,  math:5,    religion:5,    advanced:10,  second_lang:10   },
+  { id:"31606261101401", name:"كادى رامي صادق مصطفي اسماعيل سليم",     arabic:4.75, english:10,  math:5,    religion:5,    advanced:9.5, second_lang:10   },
+  { id:"31606161100866", name:"كارما اسلام محمد احمد على المسعودي",     arabic:5,    english:10,  math:4.75, religion:5,    advanced:9.5, second_lang:10   },
+  { id:"31707151101768", name:"كارما اشرف رمضان مختار الجوجرى",         arabic:5,    english:10,  math:5,    religion:4.5,  advanced:10,  second_lang:10   },
+  { id:"31703061100244", name:"كارما محمد احمد لطفي عبدالله",           arabic:5,    english:10,  math:4.75, religion:4.25, advanced:null,second_lang:10   },
+  { id:"31710011102161", name:"كارما محمود جمال فتحى ربيع الخضري",      arabic:4.75, english:8.5, math:4.75, religion:4.75, advanced:9.5, second_lang:10   },
+  { id:"31707071100329", name:"كارما نبيه نبيه نبيه عبدالعزيز حسن",    arabic:4.75, english:10,  math:4.75, religion:4.25, advanced:9,   second_lang:7    },
+  { id:"31710301100669", name:"كارميلا خالد محمد صفوت محمود الرملي",    arabic:4.25, english:10,  math:4.75, religion:4.5,  advanced:9,   second_lang:9    },
+  { id:"31703101100528", name:"كرمة كريم اسامه محمد العزب",             arabic:4.5,  english:10,  math:4.25, religion:3.75, advanced:8,   second_lang:10   },
+  { id:"31608231100764", name:"لارا خالد محمد عيسى احمد ابو الخير",     arabic:null, english:null,math:null, religion:null, advanced:null,second_lang:null },
+  { id:"31707298800963", name:"لارا علاء الدين محمد الراجحي محمد شلبي", arabic:5,    english:10,  math:5,    religion:3,    advanced:9.5, second_lang:10   },
+  { id:"31703111100283", name:"لارين معتز محمد اسماعيل عبده شلبي",      arabic:5,    english:9.5, math:4.75, religion:4.75, advanced:8,   second_lang:10   },
+  { id:"31610011105085", name:"لانا محمد ممدوح على كسبه",               arabic:4.5,  english:10,  math:5,    religion:4.5,  advanced:10,  second_lang:10   },
+  { id:"31707271101583", name:"لانا محمد منصور عبدالقادر ابراهيم",      arabic:4.25, english:10,  math:5,    religion:4.25, advanced:10,  second_lang:10   },
+  { id:"31701011104424", name:"ليان نادر الدسوقي محمد على هلال",         arabic:5,    english:10,  math:4,    religion:4.75, advanced:10,  second_lang:10   },
+  { id:"31610011105107", name:"لين محمد ممدوح على كسبه",                arabic:4.75, english:10,  math:5,    religion:5,    advanced:10,  second_lang:10   },
+  { id:"31801051100663", name:"ماريه عبدالله على على حسن سكرانه",       arabic:4.25, english:9,   math:3.25, religion:4,    advanced:6,   second_lang:10   },
+  { id:"31612221100526", name:"مايا محمود عبدالخالق محمود عبدالسلام عطا",arabic:4.75,english:10,  math:4.5,  religion:4.5,  advanced:7,   second_lang:10   },
+  { id:"31706101100225", name:"نسرين عبد الهادي محمد ابو النصر على",    arabic:null, english:null,math:null, religion:null, advanced:null,second_lang:null },
+  { id:"31606060300503", name:"نور محمد محمد الشعباني",                  arabic:4.75, english:8,   math:4,    religion:4.75, advanced:6.5, second_lang:10   },
+  { id:"31605211202464", name:"هنا محمد العدل محمد العدل",               arabic:4.5,  english:9,   math:4.75, religion:4.25, advanced:10,  second_lang:9    },
+  { id:"31709281100367", name:"ياسمينا اسامه عبدالسلام الهادى محمود",   arabic:3.75, english:8,   math:4.75, religion:4.25, advanced:6.5, second_lang:10   },
+  { id:"31704091204415", name:"ابراهيم احمد ابراهيم عبد الحافظ محمد",   arabic:4.75, english:9.5, math:5,    religion:3.75, advanced:8.5, second_lang:6    },
+  { id:"31707031205659", name:"ابراهيم أمجد عبدالعزيز عبدالحليم حمزه", arabic:3.5,  english:9.5, math:4.75, religion:3.25, advanced:10,  second_lang:null },
+  { id:"31608041101411", name:"أحمد محمد احمد السيد بلبول",             arabic:4.75, english:10,  math:4.75, religion:5,    advanced:10,  second_lang:10   },
+  { id:"31705111100391", name:"أحمد محمد عبدالسلام عبده الحطاب",        arabic:4.75, english:10,  math:4.75, religion:5,    advanced:8,   second_lang:10   },
+  { id:"31703031100118", name:"آدم محمد عصام مختار السيد ابراهيم تفاحه",arabic:0.75, english:4.5, math:2.5,  religion:2.25, advanced:1,   second_lang:5    },
+  { id:"31710161100833", name:"آدم محمد محمودى عبد السيد العيوطي",      arabic:4.75, english:10,  math:5,    religion:4.75, advanced:9.5, second_lang:10   },
+  { id:"31710011102676", name:"آدم محمود جمال فتحي ربيع الخضري",        arabic:4,    english:9,   math:4.75, religion:3.75, advanced:5,   second_lang:9    },
+  { id:"31706011100293", name:"آدم محمود صبرى احمد عربانو",             arabic:4.75, english:9,   math:4.75, religion:4.25, advanced:6,   second_lang:10   },
+  { id:"31610011100679", name:"آدم محمود محمد المرسى عبدالحميد ابو النور بدران",arabic:3.75,english:10,math:5,religion:3.75,advanced:8.5,second_lang:10 },
+  { id:"31705131100894", name:"آسر احمد صلاح محمد السيد ابو العينين",   arabic:4.5,  english:10,  math:5,    religion:4.25, advanced:9,   second_lang:10   },
+  { id:"31705211100615", name:"آسر حسام فوزي عبدالعزيز محمد عماره",     arabic:5,    english:10,  math:4.75, religion:4.5,  advanced:10,  second_lang:10   },
+  { id:"31606201101577", name:"آسر محمد احمد طاهر الشامخ",              arabic:4.5,  english:10,  math:4.75, religion:4.5,  advanced:9,   second_lang:9    },
+  { id:"31707071207751", name:"آمن حماده السعيد حسن على",               arabic:4.75, english:10,  math:4,    religion:4.75, advanced:6,   second_lang:10   },
+  { id:"31706201100338", name:"آمن محمد مسعد أنور الامام",              arabic:4.5,  english:8,   math:4,    religion:4.5,  advanced:9,   second_lang:10   },
+  { id:"31604181101076", name:"انس احمد السيد السيد بلبول",             arabic:4.5,  english:9,   math:4.5,  religion:4.75, advanced:10,  second_lang:9    },
+  { id:"31706288800373", name:"انس عبدالله محمد نصر سعد خطاب",          arabic:4.5,  english:9,   math:4.75, religion:4.5,  advanced:10,  second_lang:10   },
+  { id:"31604151201955", name:"اياد احمد حمدي حسن السيد قنديل",         arabic:4.75, english:9,   math:4,    religion:4.5,  advanced:10,  second_lang:10   },
+  { id:"31611031201575", name:"حازم كارم ابراهيم محمد السيد الديسطي",   arabic:5,    english:10,  math:5,    religion:4.75, advanced:9.5, second_lang:10   },
+  { id:"31707191100314", name:"حمزه عمر طاهر عمر الشافعي",             arabic:5,    english:10,  math:3.75, religion:4.5,  advanced:10,  second_lang:10   },
+  { id:"31606261101355", name:"ريان رامي صادق مصطفى اسماعيل سليم",     arabic:4.75, english:10,  math:5,    religion:4.25, advanced:9,   second_lang:10   },
+  { id:"31606171100473", name:"زياد محمد مسعد محمد مصطفى المشمشى",     arabic:5,    english:10,  math:4.25, religion:4.25, advanced:10,  second_lang:10   },
+  { id:"31607028800118", name:"زين الدين محمد رمضان المرسى جاد على",    arabic:4.25, english:10,  math:4.25, religion:4.25, advanced:8,   second_lang:10   },
+  { id:"31606171100457", name:"زين الدين محمد مسعد محمد مصطفى المشمشى",arabic:4.5,  english:10,  math:5,    religion:4.25, advanced:10,  second_lang:10   },
+  { id:"31703140201072", name:"سليم محمد حامد محمد عبدالخالق الحوراني", arabic:4.5,  english:9.5, math:5,    religion:5,    advanced:10,  second_lang:10   },
+  { id:"31707131101354", name:"سيف محمد ابراهيم عرفه مصطفي",           arabic:4.75, english:10,  math:4.75, religion:4.5,  advanced:10,  second_lang:10   },
+  { id:"31706018801939", name:"عمر احمد محمد احمد مشالي",               arabic:4.5,  english:9,   math:4.75, religion:4.25, advanced:10,  second_lang:10   },
+  { id:"31702221100657", name:"عمر مصطفي فرج مصطفي النجار",             arabic:4,    english:9,   math:4.75, religion:5,    advanced:4.5, second_lang:10   },
+  { id:"31610061101854", name:"عمران محمود المتولى على المتولى قنديل",  arabic:5,    english:10,  math:3.5,  religion:4.25, advanced:10,  second_lang:10   },
+  { id:"31801011105212", name:"مازن مصطفى محمد وهبه محمد الادهم",       arabic:4.75, english:10,  math:5,    religion:4.5,  advanced:8,   second_lang:10   },
+  { id:"31609038800097", name:"مالك احمد احمد السيد محمد المزين",       arabic:4.5,  english:10,  math:4.75, religion:5,    advanced:9,   second_lang:10   },
+  { id:"31708011402772", name:"مالك رشاد محمد عبدالفتاح محمد",          arabic:5,    english:10,  math:4.75, religion:5,    advanced:10,  second_lang:6    },
+  { id:"31603161100794", name:"مالك محمد احمد حسن الفار",               arabic:3.75, english:9,   math:2.5,  religion:1.5,  advanced:3,   second_lang:10   },
+  { id:"31708241101119", name:"مالك محمود محمد عبدالباقي حبيش",         arabic:5,    english:10,  math:5,    religion:4.5,  advanced:9,   second_lang:10   },
+  { id:"31711031100536", name:"محمد احمد عبدالهادى السعيد العوادلي",    arabic:4,    english:9,   math:4.25, religion:4.75, advanced:4,   second_lang:9    },
+  { id:"31603091100597", name:"محمد سعد شوقي محمد أحمد أبو احمد",       arabic:4.5,  english:9,   math:5,    religion:4.5,  advanced:8,   second_lang:10   },
+  { id:"31703211101457", name:"محمد سمير الشربيني لبيب محمد",           arabic:4.75, english:9,   math:5,    religion:4.5,  advanced:10,  second_lang:10   },
+  { id:"31705311100213", name:"محمد على سمير على مصطفى المى",           arabic:5,    english:8,   math:4.75, religion:4.5,  advanced:9,   second_lang:10   },
+  { id:"31603141100232", name:"محمد عماد محمد زكي الطوخي",              arabic:2.75, english:10,  math:4,    religion:3,    advanced:5,   second_lang:10   },
+  { id:"31606301100896", name:"محمد محمود ابراهيم عباس المحجوب",        arabic:5,    english:9.5, math:5,    religion:5,    advanced:10,  second_lang:10   },
+  { id:"31704211100694", name:"محمد معتز عوض بركات عوض العدل",          arabic:4.25, english:10,  math:4,    religion:4.5,  advanced:8,   second_lang:null },
+  { id:"31705011100254", name:"مروان رامي سلامه عباس سلامه",            arabic:4.75, english:10,  math:4.75, religion:4.25, advanced:8,   second_lang:10   },
+  { id:"31801221203012", name:"مصطفى محمد محب عبدالمهدي ابراهيم",       arabic:4.75, english:9.5, math:4.75, religion:4,    advanced:10,  second_lang:10   },
+  { id:"31704281100136", name:"معاذ عبدالرحمن محمد احمد محمد",          arabic:5,    english:10,  math:5,    religion:5,    advanced:10,  second_lang:10   },
+  { id:"31706091100639", name:"مليك مجدي اسامه محمود خليل",             arabic:4.5,  english:10,  math:3.75, religion:5,    advanced:10,  second_lang:10   },
+  { id:"31604081101095", name:"ياسين عبدالمنعم عاطف صديق سعيد",         arabic:4,    english:9,   math:5,    religion:4.25, advanced:10,  second_lang:10   },
+  { id:"31606261101517", name:"ياسين مصطفى ابراهيم امين جبر",           arabic:4.75, english:10,  math:3,    religion:4.25, advanced:8,   second_lang:10   },
+  { id:"31703041100256", name:"يامن تامر محمد محمد الشريف",             arabic:4.75, english:9.5, math:4.5,  religion:4.5,  advanced:7,   second_lang:10   },
+  { id:"31607041100338", name:"يزيد ابراهيم محمد السيد نبهان",          arabic:4.25, english:10,  math:4,    religion:4.75, advanced:10,  second_lang:10   },
+  { id:"31706121101058", name:"يوسف احمد السيد احمد ابراهيم موافي",     arabic:5,    english:10,  math:4.75, religion:5,    advanced:10,  second_lang:10   },
+  { id:"31711201100137", name:"يوسف احمد مصطفى كامل طاهرابو الخير",    arabic:4.75, english:9,   math:5,    religion:4.75, advanced:8,   second_lang:10   },
+  { id:"31707068801219", name:"يوسف حازم عز الرجال عبداللطيف السيد",   arabic:3.25, english:4,   math:2.75, religion:3.75, advanced:3,   second_lang:8    },
+  { id:"31605261100298", name:"يوسف عمرو محمد عصام محمد السعيد عيسي",  arabic:5,    english:10,  math:4.75, religion:5,    advanced:10,  second_lang:10   },
+  { id:"31609071603914", name:"يوسف محمد فهمى محمد مهدى فارس",         arabic:4.5,  english:10,  math:5,    religion:5,    advanced:7,   second_lang:10   }
+];
+
+// Subject definitions — always Arabic labels
+const subjects = {
+  en: [
+    { key: 'arabic',      label: 'عربي',                max: 5  },
+    { key: 'english',     label: 'انجليزي',             max: 10 },
+    { key: 'math',        label: 'رياضيات',             max: 5  },
+    { key: 'religion',    label: 'دين',                 max: 5  },
+    { key: 'advanced',    label: 'لغة أجنبية أولى',    max: 10 },
+    { key: 'second_lang', label: 'لغة أجنبية ثانية',   max: 10 }
+  ],
+  ar: [
+    { key: 'arabic',      label: 'عربي',                max: 5  },
+    { key: 'english',     label: 'انجليزي',             max: 10 },
+    { key: 'math',        label: 'رياضيات',             max: 5  },
+    { key: 'religion',    label: 'دين',                 max: 5  },
+    { key: 'advanced',    label: 'لغة أجنبية أولى',    max: 10 },
+    { key: 'second_lang', label: 'لغة أجنبية ثانية',   max: 10 }
+  ]
+};
+
+function getCurrentLang() {
+  return document.documentElement.getAttribute('lang') || 'en';
+}
+
+function searchStudent() {
+  const input = document.getElementById('nationalIdInput').value.trim();
+  const lang = getCurrentLang();
+  const errorMsg = document.getElementById('errorMsg');
+  const errorText = document.getElementById('errorText');
+  const resultWrapper = document.getElementById('resultWrapper');
+
+  // Hide previous results/errors
+  errorMsg.classList.remove('show');
+  resultWrapper.classList.remove('show');
+
+  if (!input) {
+    errorText.textContent = lang === 'ar'
+      ? 'من فضلك أدخل الرقم القومي'
+      : 'Please enter your National ID';
+    errorMsg.classList.add('show');
+    return;
+  }
+
+  const student = studentsData.find(s => s.id === input);
+
+  if (!student) {
+    errorText.textContent = lang === 'ar'
+      ? 'الرقم القومي غير موجود. تحقق من الرقم وحاول مرة أخرى.'
+      : 'National ID not found. Please check and try again.';
+    errorMsg.classList.add('show');
+    return;
+  }
+
+  // Check if grades are available
+  const hasGrades = student.arabic !== null;
+
+  if (!hasGrades) {
+    errorText.textContent = lang === 'ar'
+      ? 'درجات هذا الطالب غير متاحة بعد. يرجى التواصل مع الإدارة.'
+      : 'Grades for this student are not available yet. Please contact administration.';
+    errorMsg.classList.add('show');
+    return;
+  }
+
+  // Fill result card
+  document.getElementById('resultName').textContent = student.name;
+  document.getElementById('resultId').textContent = student.id;
+
+  // Calculate total
+  const vals = [student.arabic, student.english, student.math, student.religion, student.advanced, student.second_lang];
+  const validVals = vals.filter(v => v !== null && v !== undefined && !isNaN(parseFloat(v)));
+  const total = validVals.reduce((a, b) => a + parseFloat(b), 0);
+  const maxTotal = 45;
+  const pct = (total / maxTotal) * 100;
+
+  document.getElementById('resultTotal').textContent = total.toFixed(2) + ' / ' + maxTotal;
+
+  // Pass/Fail (pass = >= 50%)
+  const pass = pct >= 50;
+  const badge = document.getElementById('resultBadge');
+  const statusEl = document.getElementById('resultStatus');
+  badge.className = 'result-badge ' + (pass ? 'pass' : 'fail');
+  badge.querySelector('i').className = pass ? 'fas fa-check-circle' : 'fas fa-times-circle';
+  statusEl.textContent = lang === 'ar'
+    ? (pass ? 'ناجح' : 'راسب')
+    : (pass ? 'PASS' : 'FAIL');
+
+  // Build subjects grid
+  const grid = document.getElementById('subjectsGrid');
+  grid.innerHTML = '';
+  const subjectList = subjects[lang] || subjects.en;
+
+  subjectList.forEach(subj => {
+    const raw = student[subj.key];
+    const score = (raw === null || raw === undefined || isNaN(parseFloat(raw))) ? null : parseFloat(raw);
+    const scoreDisplay = score !== null ? score : '—';
+    const pctSubj = score !== null ? (score / subj.max) * 100 : 0;
+
+    let fillClass = 'high';
+    if (pctSubj < 50) fillClass = 'low';
+    else if (pctSubj < 75) fillClass = 'mid';
+
+    const item = document.createElement('div');
+    item.className = 'subject-item';
+    item.innerHTML = `
+      <div class="subj-name">${subj.label}</div>
+      <div class="subj-score-row">
+        <span class="subj-score">${scoreDisplay}</span>
+        <span class="subj-max">/ ${subj.max}</span>
+      </div>
+      <div class="subj-bar-bg">
+        <div class="subj-bar-fill ${fillClass}" style="width:0%"></div>
+      </div>
+    `;
+    grid.appendChild(item);
+
+    // Animate bar
+    setTimeout(() => {
+      item.querySelector('.subj-bar-fill').style.width = pctSubj + '%';
+    }, 100);
+  });
+
+  resultWrapper.classList.add('show');
+  resultWrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function resetSearch() {
+  document.getElementById('nationalIdInput').value = '';
+  document.getElementById('resultWrapper').classList.remove('show');
+  document.getElementById('errorMsg').classList.remove('show');
+  document.getElementById('nationalIdInput').focus();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Allow Enter key to search
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('nationalIdInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') searchStudent();
+  });
+
+  // Only allow numbers
+  document.getElementById('nationalIdInput').addEventListener('input', function() {
+    this.value = this.value.replace(/[^0-9]/g, '');
+  });
+});
+</script>
+
+<script src="script.js"></script>
+<script src="translations_file.js"></script>
+<script src="language_switcher.js"></script>
+
+<!-- Add grades translations patch -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Patch translations for grades page if translations object exists
+  if (typeof translations !== 'undefined') {
+    translations.en.nav = translations.en.nav || {};
+    translations.en.nav.grades = 'Grades';
+    translations.ar.nav = translations.ar.nav || {};
+    translations.ar.nav.grades = 'نتائج الطلاب';
+
+    translations.en.grades = {
+      pageTitle:    'STUDENT GRADES',
+      pageSubtitle: 'Enter your National ID to view your results',
+      searchTitle:  'Search for Your Results',
+      searchSubtitle:'Enter your 14-digit National ID number below',
+      inputPlaceholder:'Enter National ID',
+      searchBtn:    'Search',
+      grade3:       'Grade 3',
+      term1:        'Term 1 — 2025/2026',
+      outOf45:      'out of 45',
+      subjectsTitle:'Subject Grades',
+      print:        'Print Result',
+      newSearch:    'New Search'
+    };
+
+    translations.ar.grades = {
+      pageTitle:    'نتائج الطلاب',
+      pageSubtitle: 'أدخل رقمك القومي لعرض نتيجتك',
+      searchTitle:  'ابحث عن نتيجتك',
+      searchSubtitle:'أدخل الرقم القومي المكون من 14 رقماً',
+      inputPlaceholder:'أدخل الرقم القومي',
+      searchBtn:    'بحث',
+      grade3:       'الصف الثالث',
+      term1:        'الفصل الأول — 2025/2026',
+      outOf45:      'من 45',
+      subjectsTitle:'درجات المواد',
+      print:        'طباعة النتيجة',
+      newSearch:    'بحث جديد'
+    };
+
+    // Re-apply translations
+    if (window.languageSwitcher) {
+      window.languageSwitcher.translateElements(window.languageSwitcher.currentLang);
+    }
+  }
+});
+</script>
+
+</body>
+</html>

@@ -17,7 +17,8 @@ const translations = {
       faq: "FAQ",
       contact: "Contact Us",
       careers: "Careers",
-      applyNow: "APPLY NOW"
+      applyNow: "APPLY NOW",
+      grades: "Grades"        // ← أضفها هنا
     },
 
     topBar: {
@@ -503,17 +504,18 @@ const translations = {
       about: "من نحن",
       whoWeAre: "من نحن",
       vision: "الرؤية والرسالة",
-      values: "القيم الأساسية",
-      location: "الموقع",
+      values: "قيمنا الأساسية",
+      location: "موقعنا",
       moreAbout: "المزيد عنا",
-      admission: "التقديم",
-      learning: "التعليم",
+      admission: "القبول",
+      learning: "التعلم",
       schoolLife: "الحياة المدرسية",
       gallery: "معرض الصور",
       faq: "الأسئلة الشائعة",
-      contact: "اتصل بنا",
+      contact: "تواصل معنا",
       careers: "الوظائف",
-      applyNow: "قدم الآن"
+      applyNow: "سجل الآن",
+      grades: "نتائج الطلاب"    // ← أضفها هنا
     },
 
     topBar: {
