@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- RTL Support CSS -->
+    <link rel="stylesheet" href="rtl_styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning - Bristol Language School</title>
+    <link rel="icon" type="image/png" href="MY DATA/craiyon_045154_image.png">
+    <link rel="stylesheet" href="style.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #d4af37;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+            --white: #ffffff;
+            --main-font: 'Montserrat', Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--main-font);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 0;
+        }
+
+        .top-bar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slogan {
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .social-links a {
+            color: var(--secondary-color);
+            margin-left: 15px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--white);
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header,
+        .header *,
+        .header::before,
+        .header::after,
+        .header .container,
+        .header .container::before,
+        .header .container::after {
+            border: none !important;
+            border-top: none !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        .header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .logo {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .main-menu {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .nav-menu li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu a {
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 10px 5px;
+            position: relative;
+            color: var(--primary-color);
+            white-space: nowrap;
+            display: inline-block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--secondary-color);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown > a i {
+            font-size: 10px;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover > a i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--primary-color);
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding-left: 25px;
+        }
+
+        .btn-apply {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 12px 28px;
+            border-radius: 200px;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            flex-shrink: 0;
+            display: inline-block;
+            line-height: 1;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-apply:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+            padding: 10px 26px;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-color);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        /* Menu Overlay */
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #283593 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: var(--secondary-color);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Introduction Section */
+        .intro-section {
+            padding: 60px 20px;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .intro-section .intro-text {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+
+        /* Section */
+        .learning-section {
+            padding: 60px 20px;
+        }
+
+        .learning-section:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+
+        .section-content {
+            max-width: 900px;
+            margin: 30px auto 0;
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* Subjects Grid */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .subject-card {
+            background-color: var(--white);
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .subject-card i {
+            font-size: 50px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .subject-card h3 {
+            color: var(--primary-color);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        /* Teaching Methods */
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .method-item {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .method-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .method-item i {
+            font-size: 32px;
+            color: var(--secondary-color);
+            min-width: 40px;
+        }
+
+        .method-item h4 {
+            color: var(--primary-color);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .method-item p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Assessment List */
+        .assessment-list {
+            max-width: 700px;
+            margin: 30px auto;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .assessment-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .assessment-list li {
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .assessment-list li:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            transform: translateX(10px);
+        }
+
+        .assessment-list li i {
+            color: var(--secondary-color);
+            font-size: 20px;
+        }
+
+        .assessment-list li:hover i {
+            color: var(--primary-color);
+        }
+
+        /* Stages Grid */
+        .stages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .stage-card {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #283593 100%);
+            padding: 30px;
+            border-radius: 12px;
+            color: var(--white);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stage-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .stage-card i {
+            font-size: 45px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .stage-card h3 {
+            color: var(--secondary-color);
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stage-card p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #283593 100%);
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: var(--secondary-color);
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-cta:hover {
+            background-color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-cta i {
+            font-size: 18px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 50px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            color: var(--secondary-color);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-col p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background-color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 280px;
+                height: 100vh;
+                background-color: var(--white);
+                box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+                transition: left 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
+                padding-top: 80px;
+                display: block;
+            }
+            
+            .main-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                gap: 0;
+                width: 100%;
+            }
+            
+            .nav-menu li {
+                width: 100%;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .nav-menu a {
+                display: block;
+                padding: 15px 20px;
+                width: 100%;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                z-index: 1001;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: var(--light-gray);
+                display: none !important;
+                padding: 0;
+                border-radius: 0;
+            }
+            
+            .dropdown.active .dropdown-menu {
+                display: block !important;
+            }
+            
+            .dropdown-menu li {
+                border-bottom: 1px solid #ddd;
+            }
+            
+            .dropdown-menu a {
+                padding: 12px 20px 12px 40px;
+                font-size: 14px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .subjects-grid,
+            .stages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .methods-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                padding: 8px 0;
+            }
+            
+            .top-bar .container {
+                padding: 0 15px;
+                gap: 10px;
+            }
+            
+            .slogan {
+                font-size: 8px;
+                white-space: normal;
+                line-height: 1.2;
+                max-width: 55%;
+            }
+            
+            .social-links {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+            }
+            
+            .social-links a {
+                font-size: 16px;
+                margin-left: 0;
+                width: 32px;
+                height: 32px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .header .container {
+                padding: 5px 10px;
+            }
+            
+            .logo img {
+                height: 70px;
+            }
+            
+            .mobile-menu-toggle {
+                font-size: 22px;
+            }
+            
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .subjects-grid,
+            .stages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-cta {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+<div class="top-bar">
+    <div class="container">
+        <div class="slogan" data-translate="topBar.slogan">Learning, Sharing and Growing Together</div>
+        
+        <!-- Language Switcher Buttons -->
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ar">AR</button>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/share/1DAwFXqKfG/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@bristol.schools?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </div>
+</div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="MY DATA/craiyon_045154_image.png" alt="Bristol School Logo">
+            </div>
+            <nav class="main-menu">
+                <ul class="nav-menu">
+                    <li><a href="index.html" data-translate="nav.home">Home</a></li>
+                 <li class="dropdown">
+    <a href="about.html"><span data-translate="nav.about">About Us</span> <i class="fas fa-chevron-down"></i></a>
+    <ul class="dropdown-menu">
+        <li><a href="about.html#who-we-are" data-translate="nav.whoWeAre">Who We Are</a></li>
+        <li><a href="about.html" data-translate="nav.moreAbout">More About</a></li>
+    </ul>
+</li>
+                    <li><a href="admission.html" data-translate="nav.admission">Admission</a></li>
+                    <li><a href="learning.html" class="active" data-translate="nav.learning">Learning</a></li>
+                    <li class="dropdown">
+                        <a href="#"><span data-translate="nav.schoolLife">School Life</span> <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gallery.html" data-translate="nav.gallery">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="faq.html" data-translate="nav.faq">FAQ</a></li>
+                    <li><a href="contact.html" data-translate="nav.contact">Contact Us</a></li>
+                    <li><a href="careers.html" data-translate="nav.careers">Careers</a></li>
+                </ul>
+                
+            </nav>
+            
+            <a href="admission.html" class="btn-apply" data-translate="nav.applyNow">APPLY NOW</a>
+            
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1 data-translate="learningPage.title">Learning at Bristol</h1>
+        <p data-translate="learningPage.subtitle">Building Bright Futures Through Quality Education</p>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="intro-section">
+        <div class="container">
+            <p class="intro-text" data-translate="learningPage.intro">
+                At Bristol Language School, learning goes beyond textbooks. We focus on building knowledge, skills, and character through modern teaching methods and a student-centered approach.
+            </p>
+        </div>
+    </section>
+
+    <!-- Curriculum Section -->
+    <section class="learning-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="learningPage.curriculumTitle">Our Curriculum</h2>
+            <div class="section-content">
+                <p data-translate="learningPage.curriculumText">Our curriculum follows international standards and is designed to develop critical thinking, creativity, and academic excellence while respecting local values. We combine the best of global educational practices with Egyptian culture and heritage, ensuring our students are prepared for both local and international opportunities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subjects Section -->
+    <section class="learning-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="learningPage.subjectsTitle">Subjects Offered</h2>
+            <div class="subjects-grid">
+                <div class="subject-card">
+                    <i class="fas fa-language"></i>
+                    <h3 data-translate="learningPage.english">English Language</h3>
+                </div>
+                <div class="subject-card">
+                    <i class="fas fa-calculator"></i>
+                    <h3 data-translate="learningPage.mathematics">Mathematics</h3>
+                </div>
+                <div class="subject-card">
+                    <i class="fas fa-flask"></i>
+                    <h3 data-translate="learningPage.science">Science</h3>
+                </div>
+                <div class="subject-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3 data-translate="learningPage.ict">ICT & Technology</h3>
+                </div>
+                <div class="subject-card">
+                    <i class="fas fa-book-open"></i>
+                    <h3 data-translate="learningPage.arabic">Arabic Language</h3>
+                </div>
+                <div class="subject-card">
+                    <i class="fas fa-globe-africa"></i>
+                    <h3 data-translate="learningPage.socialStudies">Social Studies</h3>
+                </div>
+                <div class="subject-card">
+                    <i class="fas fa-palette"></i>
+                    <h3 data-translate="learningPage.art">Art & Music</h3>
+                </div>
+                <div class="subject-card">
+                    <i class="fas fa-running"></i>
+                    <h3 data-translate="learningPage.pe">Physical Education</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Methods Section -->
+    <section class="learning-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="learningPage.teachingTitle">Teaching Methods</h2>
+            <div class="section-content">
+                <p data-translate="learningPage.teachingText">Our teaching methods encourage student participation, teamwork, and independent thinking through innovative approaches.</p>
+            </div>
+            <div class="methods-grid">
+                <div class="method-item">
+                    <i class="fas fa-comments"></i>
+                    <div>
+                        <h4 data-translate="learningPage.interactive">Interactive Learning</h4>
+                        <p data-translate="learningPage.interactiveText">Active participation and engagement in every lesson</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <div>
+                        <h4 data-translate="learningPage.projectBased">Project-Based Learning</h4>
+                        <p data-translate="learningPage.projectText">Hands-on projects that develop real-world skills</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <h4 data-translate="learningPage.groupWork">Group Work</h4>
+                        <p data-translate="learningPage.groupText">Collaborative learning and teamwork activities</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <i class="fas fa-laptop"></i>
+                    <div>
+                        <h4 data-translate="learningPage.technology">Technology Integration</h4>
+                        <p data-translate="learningPage.technologyText">Modern tools and digital resources in education</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <i class="fas fa-chart-line"></i>
+                    <div>
+                        <h4 data-translate="learningPage.assessment">Continuous Assessment</h4>
+                        <p data-translate="learningPage.assessmentText">Regular feedback and progress monitoring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Section -->
+    <section class="learning-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="learningPage.assessmentTitle">Assessment & Evaluation</h2>
+            <div class="section-content">
+                <p data-translate="learningPage.assessmentIntro">We use comprehensive assessment methods to track student progress and ensure continuous improvement.</p>
+            </div>
+            <div class="assessment-list">
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <span data-translate="learningPage.quiz">Regular Quizzes</span></li>
+<li><i class="fas fa-check-circle"></i> <span data-translate="learningPage.homework">Homework Assignments</span></li>
+<li><i class="fas fa-check-circle"></i> <span data-translate="learningPage.projects">Class Projects</span></li>
+<li><i class="fas fa-check-circle"></i> <span data-translate="learningPage.exams">Periodic Exams</span></li>
+<li><i class="fas fa-check-circle"></i> <span data-translate="learningPage.behavior">Behavior & Participation</span></li>
+<li><i class="fas fa-check-circle"></i> <span data-translate="learningPage.reports">Progress Reports</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Stages Section -->
+    <section class="learning-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="learningPage.stagesTitle">Educational Stages</h2>
+            <div class="stages-grid">
+                <div class="stage-card">
+                    <i class="fas fa-baby"></i>
+                    <h3 data-translate="learningPage.kindergarten">Kindergarten</h3>
+                    <p data-translate="learningPage.kindergartenText">Play-based learning and early development</p>
+                </div>
+                <div class="stage-card">
+                    <i class="fas fa-child"></i>
+                    <h3 data-translate="learningPage.primary">Primary</h3>
+                    <p data-translate="learningPage.primaryText">Building strong foundations in core subjects</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Support Section -->
+    <section class="learning-section">
+        <div class="container">
+           <h2 class="section-title" data-translate="learningPage.supportTitle">Learning Support</h2>
+            <div class="section-content">
+                <p data-translate="learningPage.supportText">We provide comprehensive support to ensure every student reaches their full potential.</p>
+            </div>
+            <div class="methods-grid">
+                <div class="method-item">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <div>
+                        <h4 data-translate="learningPage.academicSupport">Academic Support</h4>
+                        <p data-translate="learningPage.academicText">Additional help for students who need it</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4 data-translate="learningPage.extraClasses">Extra Classes</h4>
+                        <p data-translate="learningPage.extraText">After-school sessions for reinforcement</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <i class="fas fa-hands-helping"></i>
+                    <div>
+                        <h4 data-translate="learningPage.counseling">Student Counseling</h4>
+                        <p data-translate="learningPage.counselingText">Guidance and emotional support services</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <i class="fas fa-tasks"></i>
+                    <div>
+                        <h4 data-translate="learningPage.individualPlans">Individual Learning Plans</h4>
+                        <p data-translate="learningPage.plansText">Customized approaches for each student's needs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="learning-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="learningPage.techTitle">Technology in Learning</h2>
+            <div class="section-content">
+                <p data-translate="learningPage.techText">We integrate modern technology to enhance the learning experience and prepare students for the digital age.</p>
+            </div>
+            <div class="methods-grid">
+                <div class="method-item">
+                    <i class="fas fa-tv"></i>
+                    <div>
+                        <h4 data-translate="learningPage.smartBoards">Smart Boards</h4>
+                        <p data-translate="learningPage.smartText">Interactive displays in every classroom</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <i class="fas fa-globe"></i>
+                    <div>
+                        <h4 data-translate="learningPage.onlinePlatforms">Online Platforms</h4>
+                        <p data-translate="learningPage.platformsText">Digital learning management systems</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <i class="fas fa-file-alt"></i>
+                    <div>
+                        <h4 data-translate="learningPage.digitalAssignments">Digital Assignments</h4>
+                        <p data-translate="learningPage.digitalText">Online submission and feedback systems</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <i class="fas fa-book-reader"></i>
+                    <div>
+                        <h4 data-translate="learningPage.elearning">E-Learning Resources</h4>
+                        <p data-translate="learningPage.elearningText">Access to digital libraries and materials</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 data-translate="learningPage.ctaTitle">Ready to Start Your Learning Journey?</h2>
+            <p data-translate="learningPage.ctaText">Explore more about Bristol Language School</p>
+            <div class="cta-buttons">
+                <a href="gallery.html" class="btn-cta">
+                    <i class="fas fa-images"></i>
+                    <span data-translate="learningPage.schoolLife">School Life</span>
+                </a>
+                <a href="admission.html" class="btn-cta">
+                    <i class="fas fa-file-alt"></i>
+                    <span data-translate="learningPage.applyAdmission">Apply for Admission</span>
+                </a>
+                <a href="contact.html" class="btn-cta">
+                    <i class="fas fa-user-tie"></i>
+                    <span data-translate="learningPage.advisor">Contact Academic Advisor</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4 data-translate="footer.aboutTitle">ABOUT US</h4>
+<p data-translate="footer.aboutText">Bristol Language School (BLS) is a private language school located in New Damietta City, Egypt. We are committed to providing modern and effective education that combines academic excellence with personal development.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4 data-translate="footer.keepInTouch">KEEP IN TOUCH</h4>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/share/1DAwFXqKfG/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@bristol.schools?is_from_webapp=1&sender_device=pc"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <p style="margin-top: 20px;">
+                    <i class="fas fa-map-marker-alt"></i> <span data-translate="location.address">First District, Damietta El-Gadeeda City, Damietta Governorate, Egypt</span>
+                </p>
+            </div>
+            
+            <div class="footer-col">
+                <h4 data-translate="footer.contactTitle">CONTACT US</h4>
+                <p>
+                    <i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="480a3a213b3c27242429262f3d292f2d3b2b082f25292124662b2725">[email&#160;protected]</a><br>
+                    <i class="fas fa-phone"></i> 01212881144
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p data-translate="footer.copyright">Copyright © 2024 Bristol School. All Rights Reserved. Designed By KAREEM MOUSA</p>
+        </div>
+    </footer>
+<!-- Back to Home Button -->
+    <a href="index.html" class="back-to-home">
+        <i class="fas fa-home"></i>
+    </a>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Menu Overlay -->
+    <div class="menu-overlay"></div>
+
+    <!-- JavaScript -->
+
+    <!-- JavaScript Files -->
+    <script src="script.js"></script>
+    <script src="translations_file.js"></script>
+    <script src="language_switcher.js"></script>
+</body>
+</html>

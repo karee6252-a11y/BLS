@@ -1,0 +1,692 @@
+/* rtl-styles.css - دعم اللغة العربية (RTL) */
+
+/* ====================================
+   Language Switcher Button
+   ==================================== */
+.lang-switcher {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.lang-btn {
+    background-color: transparent;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    font-family: var(--main-font);
+}
+
+.lang-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.lang-btn.active {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+/* ====================================
+   RTL General Styles
+   ==================================== */
+body.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+/* RTL - Hero Section */
+body.rtl .hero-slider .center-text {
+    text-align: center;
+}
+
+body.rtl .hero-slider h1,
+body.rtl .hero-slider h2,
+body.rtl .hero-slider h3 {
+    text-align: center;
+}
+
+body.rtl .hero-slider .subtitle,
+body.rtl .hero-slider .year {
+    text-align: center;
+}
+
+/* RTL - Page Headers */
+body.rtl .page-header {
+    text-align: center;
+}
+
+body.rtl .page-header h1,
+body.rtl .page-header p {
+    text-align: center;
+}
+
+/* RTL - Intro Sections */
+body.rtl .intro-section {
+    text-align: center;
+}
+
+body.rtl .intro-text {
+    text-align: center;
+}
+
+/* RTL - Header & Navigation */
+body.rtl .header .container {
+    flex-direction: row-reverse;
+}
+
+/* القائمة تبدأ من اليمين بدون عكس الترتيب */
+body.rtl .main-menu ul,
+body.rtl .nav-menu,
+body.rtl ul.nav-menu,
+body.rtl .main-menu > ul {
+    /* إلغاء العكس - القائمة تبقى بنفس الترتيب */
+    flex-direction: row;
+}
+
+body.rtl .main-menu {
+    direction: rtl;
+    /* محاذاة النص لليمين */
+    text-align: right;
+}
+
+body.rtl .social-links a {
+    margin-left: 0;
+    margin-right: 15px;
+}
+
+body.rtl .dropdown-menu {
+    left: auto;
+    right: 0;
+}
+
+body.rtl .dropdown-menu a {
+    text-align: right;
+    padding-right: 20px;
+    padding-left: 12px;
+}
+
+body.rtl .dropdown-menu a:hover {
+    padding-right: 25px;
+    padding-left: 12px;
+}
+
+body.rtl .dropdown > a i {
+    margin-left: 5px;
+    margin-right: 0;
+}
+
+body.rtl .lang-switcher {
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+/* RTL - Top Bar */
+body.rtl .top-bar .container {
+    flex-direction: row-reverse;
+}
+
+/* ترتيب عناصر Top Bar في العربي */
+body.rtl .top-bar .social-links {
+    order: 1;
+}
+
+body.rtl .top-bar .slogan {
+    order: 2;
+}
+
+body.rtl .top-bar .lang-switcher {
+    order: 3;
+}
+
+/* RTL - Footer */
+body.rtl .footer-widgets .container {
+    direction: rtl;
+}
+
+body.rtl .footer-col {
+    text-align: right;
+}
+
+body.rtl .footer-col h4 {
+    text-align: right;
+}
+
+body.rtl .footer-col p {
+    text-align: right;
+}
+
+body.rtl .footer-col .address {
+    text-align: right;
+}
+
+body.rtl .footer-col p i {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+body.rtl .address i {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+body.rtl .footer-bottom .container {
+    flex-direction: row-reverse;
+}
+
+body.rtl .footer-bottom p {
+    text-align: right;
+}
+
+body.rtl .footer-social a {
+    margin-left: 0;
+    margin-right: 15px;
+}
+
+body.rtl .social-icons {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+/* RTL - Info Sections */
+body.rtl .info-content {
+    text-align: right;
+}
+
+body.rtl .info-text {
+    text-align: right;
+}
+
+body.rtl .info-text h2 {
+    text-align: right;
+}
+
+body.rtl .location-details {
+    text-align: right;
+}
+
+body.rtl .location-item {
+    /* الأيقونة على اليمين والنص على الشمال */
+    flex-direction: row;
+    text-align: right;
+}
+
+body.rtl .location-item div {
+    text-align: right;
+}
+
+body.rtl .location-item h4 {
+    text-align: right;
+}
+
+body.rtl .location-item p {
+    text-align: right;
+}
+
+body.rtl .location-item i {
+    /* الأيقونة على اليمين */
+    margin-right: 0;
+    margin-left: 20px;
+    order: 2;
+}
+
+body.rtl .location-item > div {
+    order: 1;
+    flex: 1;
+}
+
+body.rtl .location-item:hover {
+    transform: translateX(-10px);
+}
+
+body.rtl .content-box:hover {
+    transform: translateX(-10px);
+}
+
+body.rtl .content-box {
+    border-left: none;
+    border-right: 5px solid var(--secondary-color);
+}
+
+body.rtl .info-box {
+    border-left: none;
+    border-right: 4px solid var(--secondary-color);
+    text-align: right;
+}
+
+/* RTL - Feature Items */
+body.rtl .feature-item {
+    text-align: center;
+}
+
+body.rtl .who-features {
+    text-align: center;
+}
+
+body.rtl .who-content {
+    text-align: right;
+}
+
+body.rtl .who-content p {
+    text-align: right;
+}
+
+body.rtl .about-intro {
+    text-align: center;
+}
+
+body.rtl .section-title {
+    text-align: center;
+}
+
+body.rtl .method-item {
+    flex-direction: row-reverse;
+    text-align: right;
+    border-left: none;
+    border-right: 4px solid var(--secondary-color);
+}
+
+body.rtl .method-item:hover {
+    transform: translateX(-10px);
+}
+
+/* RTL - Value Items */
+body.rtl .value-item {
+    text-align: center;
+}
+
+/* RTL - Forms */
+body.rtl .form-group {
+    text-align: right;
+}
+
+body.rtl .form-group label {
+    text-align: right;
+}
+
+body.rtl .form-group input,
+body.rtl .form-group textarea,
+body.rtl .form-group select {
+    text-align: right;
+    direction: rtl;
+}
+
+body.rtl .form-group label .required {
+    margin-left: 0;
+    margin-right: 3px;
+}
+
+/* RTL - Buttons */
+body.rtl .slide-buttons {
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+body.rtl .cta-buttons {
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+body.rtl .btn i {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+body.rtl .btn-cta i,
+body.rtl .btn-secondary i,
+body.rtl .submit-btn i {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+body.rtl .btn-apply {
+    text-align: center;
+}
+
+body.rtl .buttons-container {
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+/* RTL - Gallery & Images */
+body.rtl .gallery-categories {
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+body.rtl .category-btn {
+    text-align: center;
+}
+
+body.rtl .gallery-item {
+    text-align: center;
+}
+
+body.rtl .faq-categories {
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+body.rtl .category-tab {
+    text-align: center;
+}
+
+/* RTL - Assessment List */
+body.rtl .assessment-list li {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+body.rtl .assessment-list li:hover {
+    transform: translateX(-10px);
+}
+
+/* RTL - Info Card */
+body.rtl .info-card {
+    /* الأيقونة على اليمين والنص على الشمال */
+    flex-direction: row;
+    text-align: right;
+}
+
+body.rtl .info-card .info-icon {
+    order: 2;
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+body.rtl .info-card .info-content {
+    order: 1;
+    flex: 1;
+}
+
+body.rtl .info-card:hover {
+    transform: translateX(-10px);
+}
+
+/* RTL - Subject Cards */
+body.rtl .subject-card {
+    text-align: center;
+}
+
+/* RTL - Stage Cards */
+body.rtl .stage-card {
+    text-align: center;
+}
+
+/* RTL - Position Cards */
+body.rtl .position-card {
+    text-align: center;
+}
+
+body.rtl .position-card .requirements li::before {
+    margin-left: 5px;
+    margin-right: 0;
+}
+
+/* RTL - FAQ Items */
+body.rtl .faq-question {
+    flex-direction: row-reverse;
+}
+
+body.rtl .faq-question h3 {
+    text-align: right;
+}
+
+body.rtl .faq-icon {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+body.rtl .faq-answer-content {
+    text-align: right;
+}
+
+body.rtl .faq-answer-content p {
+    text-align: right;
+}
+
+body.rtl .faq-answer-content ul {
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+body.rtl .faq-answer-content ul li {
+    text-align: right;
+}
+
+body.rtl .faq-cta {
+    text-align: center;
+}
+
+body.rtl .faq-cta h2,
+body.rtl .faq-cta p {
+    text-align: center;
+}
+
+/* RTL - Back Buttons */
+body.rtl .back-to-top {
+    right: auto;
+    left: 30px;
+}
+
+body.rtl .back-to-home {
+    right: auto;
+    left: 90px;
+}
+
+/* RTL - File Upload */
+body.rtl .file-upload-label {
+    flex-direction: row-reverse;
+}
+
+/* RTL - Checkbox */
+body.rtl .checkbox-group {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+/* RTL - Thank You Pages */
+body.rtl .info-box ul,
+body.rtl .info-box li {
+    text-align: right;
+    direction: rtl;
+}
+
+body.rtl .info-box li {
+    flex-direction: row-reverse;
+}
+
+body.rtl .info-box h3 {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+
+body.rtl .info-box h3 i {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+body.rtl .info-box li i {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+body.rtl .highlight-box p {
+    flex-direction: row-reverse;
+}
+
+body.rtl .thank-you-container {
+    text-align: center;
+}
+
+body.rtl .thank-you-container h1,
+body.rtl .thank-you-container .subtitle {
+    text-align: center;
+}
+
+body.rtl .thank-you-container p {
+    text-align: center;
+}
+
+/* RTL - Location Section Grid */
+body.rtl .location-section .info-content {
+    direction: rtl;
+    /* عكس ترتيب الـ grid - الخريطة تيجي الأول (يمين) والنص يجي تاني (شمال) */
+}
+
+body.rtl .location-section .info-text {
+    order: 2;
+}
+
+body.rtl .location-section .map-container {
+    order: 1;
+}
+
+/* RTL - Mobile Menu */
+@media (max-width: 1024px) {
+    body.rtl .main-menu {
+        left: auto;
+        right: -100%;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.3);
+    }
+    
+    body.rtl .main-menu.active {
+        left: auto;
+        right: 0;
+    }
+    
+    body.rtl .nav-menu,
+    body.rtl .main-menu ul,
+    body.rtl .main-menu > ul {
+        flex-direction: column;
+        display: flex !important;
+        width: 100%;
+    }
+    
+    body.rtl .main-menu li {
+        width: 100%;
+    }
+    
+    body.rtl .main-menu a {
+        text-align: right;
+        padding-right: 20px;
+        padding-left: 15px;
+    }
+    
+    body.rtl .dropdown-menu {
+        text-align: right;
+    }
+    
+    body.rtl .dropdown-menu a {
+        padding-right: 40px;
+        padding-left: 20px;
+        text-align: right;
+    }
+    
+    body.rtl .mobile-menu-toggle {
+        order: -1;
+    }
+    
+    body.rtl .logo {
+        order: 1;
+    }
+    
+    body.rtl .btn-apply {
+        order: 0;
+    }
+    
+    /* إصلاح ترتيب النص والأيقونة في الـ dropdown */
+    body.rtl .dropdown > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row-reverse;
+        text-align: right;
+    }
+    
+    body.rtl .dropdown > a span {
+        flex: 1;
+        text-align: right;
+    }
+    
+    body.rtl .dropdown > a i {
+        margin-left: 0;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+    
+    /* Apply Now button في الموبايل */
+    body.rtl .btn-apply.mobile-only {
+        text-align: center;
+        margin: 20px;
+    }
+}
+
+/* RTL - Mobile Specific */
+@media (max-width: 768px) {
+    body.rtl .back-to-top {
+        left: 20px;
+        right: auto;
+    }
+    
+    body.rtl .back-to-home {
+        left: 75px;
+        right: auto;
+    }
+    
+    body.rtl .social-links {
+        flex-direction: row-reverse;
+    }
+    
+    body.rtl .footer-bottom .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    body.rtl .footer-bottom p {
+        text-align: center;
+    }
+    
+    body.rtl .footer-social {
+        justify-content: center;
+    }
+    
+    body.rtl .footer-col {
+        text-align: center;
+    }
+    
+    body.rtl .footer-col h4,
+    body.rtl .footer-col p {
+        text-align: center;
+    }
+    
+    body.rtl .social-icons {
+        justify-content: center;
+    }
+}
+
+/* ====================================
+   RTL - Form Placeholders & Inputs
+   ==================================== */
+body.rtl input::placeholder,
+body.rtl textarea::placeholder,
+body.rtl select::placeholder {
+    text-align: right;
+}
+
+/* RTL - Better Touch Targets for Mobile */
+@media (max-width: 768px) {
+    body.rtl .btn,
+    body.rtl .lang-btn,
+    body.rtl button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}

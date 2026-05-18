@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="rtl_styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Bristol Language School</title>
+    <link rel="icon" type="image/png" href="MY DATA/craiyon_045154_image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #d4af37;
+            --white: #ffffff;
+            --main-font: 'Montserrat', Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--main-font);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #283593 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            bottom: -175px;
+            left: -175px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+        
+        .thank-you-container {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.8s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            animation: scaleIn 0.6s ease 0.3s both;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+            position: relative;
+        }
+
+        .success-icon::before {
+            content: '';
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            border: 3px solid #4caf50;
+            border-radius: 50%;
+            opacity: 0;
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
+        }
+        
+        .success-icon i {
+            font-size: 45px;
+            color: var(--white);
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            animation: fadeIn 0.8s ease 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .subtitle {
+            color: var(--secondary-color);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            animation: fadeIn 0.8s ease 0.6s both;
+        }
+        
+        p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            animation: fadeIn 0.8s ease 0.7s both;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            border-left: 4px solid var(--secondary-color);
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            text-align: left;
+            animation: fadeIn 0.8s ease 0.8s both;
+        }
+
+        .info-box h3 {
+            color: var(--primary-color);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box h3 i {
+            color: var(--secondary-color);
+            font-size: 18px;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-box li {
+            padding: 7px 0;
+            color: #555;
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.5;
+        }
+
+        .info-box li i {
+            color: #4caf50;
+            font-size: 13px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        
+        .buttons-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 0.8s ease 0.9s both;
+        }
+
+        .btn {
+            padding: 13px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-home {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-home:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(26, 35, 126, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(26, 35, 126, 0.3);
+        }
+
+        .btn i {
+            font-size: 16px;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--secondary-color);
+            animation: confettiFall 3s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .thank-you-container {
+                padding: 35px 25px;
+                max-width: 500px;
+            }
+            
+            h1 {
+                font-size: 30px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            p {
+                font-size: 14px;
+            }
+
+            .success-icon {
+                width: 75px;
+                height: 75px;
+            }
+
+            .success-icon i {
+                font-size: 38px;
+            }
+
+            .info-box {
+                padding: 15px;
+            }
+
+            .info-box h3 {
+                font-size: 15px;
+            }
+
+            .info-box li {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            .thank-you-container {
+                padding: 30px 20px;
+                border-radius: 15px;
+            }
+
+            h1 {
+                font-size: 26px;
+                margin-bottom: 12px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+                margin-bottom: 15px;
+            }
+
+            p {
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+
+            .success-icon {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 20px;
+            }
+
+            .success-icon i {
+                font-size: 35px;
+            }
+
+            .success-icon::before {
+                width: 90px;
+                height: 90px;
+            }
+
+            .info-box {
+                padding: 12px;
+                margin-bottom: 20px;
+            }
+
+            .info-box h3 {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .info-box li {
+                font-size: 12px;
+                padding: 5px 0;
+            }
+
+            .buttons-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                font-size: 13px;
+                padding: 12px 20px;
+            }
+
+            body::before {
+                width: 250px;
+                height: 250px;
+                top: -125px;
+                right: -125px;
+            }
+
+            body::after {
+                width: 200px;
+                height: 200px;
+                bottom: -100px;
+                left: -100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        
+        <h1 data-translate="thankYou.title">Thank You!</h1>
+        <p class="subtitle" data-translate="thankYou.subtitle">Your Application Has Been Submitted Successfully</p>
+        
+        <p data-translate="thankYou.message">We have received your student application and all the information you provided. Our admissions team is now reviewing your submission.</p>
+
+        <div class="info-box">
+            <h3><i class="fas fa-info-circle"></i> <span data-translate="thankYou.nextSteps">What Happens Next?</span></h3>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> <span data-translate="thankYou.step1">We will review your application within 5-7 working days</span></li>
+                <li><i class="fas fa-check-circle"></i> <span data-translate="thankYou.step2">You will receive a confirmation email shortly</span></li>
+                <li><i class="fas fa-check-circle"></i> <span data-translate="thankYou.step3">Our team will contact you to schedule an interview</span></li>
+                <li><i class="fas fa-check-circle"></i> <span data-translate="thankYou.step4">Please keep your phone available for our call</span></li>
+            </ul>
+        </div>
+        
+        <div class="buttons-container">
+            <a href="index.html" class="btn btn-home">
+                <i class="fas fa-home"></i>
+                <span data-translate="thankYou.backHome">Back to Home</span>
+            </a>
+            <a href="contact.html" class="btn btn-secondary">
+                <i class="fas fa-envelope"></i>
+                <span data-translate="thankYou.contactUs">Contact Us</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function createConfetti() {
+            const colors = ['#d4af37', '#1a237e', '#4caf50', '#ff9800'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 5000);
+                }, i * 30);
+            }
+        }
+
+        window.addEventListener('load', createConfetti);
+    </script>
+    
+    <script src="translations_file.js"></script>
+    <script src="language_switcher.js"></script>
+</body>
+</html>

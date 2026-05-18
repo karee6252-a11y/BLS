@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="rtl_styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Bristol Language School</title>
+    <link rel="icon" type="image/png" href="MY DATA/craiyon_045154_image.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #d4af37;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+            --white: #ffffff;
+            --main-font: 'Montserrat', Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--main-font);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 0;
+        }
+
+        .top-bar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slogan {
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .social-links a {
+            color: var(--secondary-color);
+            margin-left: 15px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--white);
+        }
+
+        .header {
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header,
+        .header *,
+        .header::before,
+        .header::after,
+        .header .container,
+        .header .container::before,
+        .header .container::after {
+            border: none !important;
+            border-top: none !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        .header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .logo {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .main-menu {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .nav-menu li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu a {
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 10px 5px;
+            position: relative;
+            color: var(--primary-color);
+            white-space: nowrap;
+            display: inline-block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--secondary-color);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown > a i {
+            font-size: 10px;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover > a i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--primary-color);
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding-left: 25px;
+        }
+
+        .btn-apply {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 12px 28px;
+            border-radius: 200px;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            flex-shrink: 0;
+            display: inline-block;
+            line-height: 1;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-apply:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+            padding: 10px 26px;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-color);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #283593 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: var(--secondary-color);
+        }
+
+        .faq-section {
+            padding: 80px 20px;
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            background-color: var(--light-gray);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border: 2px solid transparent;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-tab:hover,
+        .category-tab.active {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--white);
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--secondary-color);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            background-color: var(--light-gray);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-question {
+            background-color: var(--secondary-color);
+        }
+
+        .faq-question h3 {
+            color: var(--primary-color);
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+            flex: 1;
+        }
+
+        .faq-icon {
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            background-color: var(--primary-color);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 25px 30px;
+            color: var(--text-color);
+            font-size: 15px;
+            line-height: 1.8;
+            background-color: var(--white);
+        }
+
+        .faq-answer-content p {
+            margin-bottom: 15px;
+        }
+
+        .faq-answer-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .faq-answer-content li {
+            margin-bottom: 8px;
+        }
+
+        .faq-cta {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #283593 100%);
+            padding: 50px 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-top: 60px;
+        }
+
+        .faq-cta h2 {
+            color: var(--white);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .faq-cta p {
+            color: var(--secondary-color);
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-cta:hover {
+            background-color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-cta i {
+            font-size: 18px;
+        }
+
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 50px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            color: var(--secondary-color);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-col p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background-color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 1024px) {
+            .main-menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 280px;
+                height: 100vh;
+                background-color: var(--white);
+                box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+                transition: left 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
+                padding-top: 80px;
+                display: block;
+            }
+            
+            .main-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                gap: 0;
+                width: 100%;
+            }
+            
+            .nav-menu li {
+                width: 100%;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .nav-menu a {
+                display: block;
+                padding: 15px 20px;
+                width: 100%;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                z-index: 1001;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: var(--light-gray);
+                display: none;
+                padding: 0;
+                border-radius: 0;
+            }
+            
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+            
+            .dropdown-menu li {
+                border-bottom: 1px solid #ddd;
+            }
+            
+            .dropdown-menu a {
+                padding: 12px 20px 12px 40px;
+                font-size: 14px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-categories {
+                gap: 10px;
+            }
+
+            .category-tab {
+                padding: 10px 20px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                padding: 8px 0;
+            }
+            
+            .top-bar .container {
+                padding: 0 15px;
+                gap: 10px;
+            }
+            
+            .slogan {
+                font-size: 9px;
+                white-space: normal;
+                line-height: 1.3;
+                max-width: 58%;
+            }
+            
+            .social-links {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+            }
+            
+            .social-links a {
+                font-size: 17px;
+                margin-left: 0;
+                width: 34px;
+                height: 34px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .header .container {
+                padding: 5px 10px;
+            }
+            
+            .logo img {
+                height: 70px;
+            }
+            
+            .mobile-menu-toggle {
+                font-size: 22px;
+            }
+            
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .faq-section {
+                padding: 40px 15px;
+            }
+
+            .faq-categories {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .category-tab {
+                width: 100%;
+            }
+
+            .faq-question {
+                padding: 20px;
+            }
+
+            .faq-question h3 {
+                font-size: 16px;
+            }
+
+            .faq-answer-content {
+                padding: 20px;
+                font-size: 14px;
+            }
+
+            .faq-cta {
+                padding: 30px 20px;
+            }
+
+            .faq-cta h2 {
+                font-size: 24px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn-cta {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="top-bar">
+    <div class="container">
+        <div class="slogan" data-translate="topBar.slogan">Learning, Sharing and Growing Together</div>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ar">AR</button>
+        </div>
+        <div class="social-links">
+            <a href="https://www.facebook.com/share/1DAwFXqKfG/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@bristol.schools?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </div>
+</div>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <img src="MY DATA/craiyon_045154_image.png" alt="Bristol School Logo">
+        </div>
+        <nav class="main-menu">
+            <ul class="nav-menu">
+                <li><a href="index.html" data-translate="nav.home">Home</a></li>
+                <li class="dropdown">
+                    <a href="about.html"><span data-translate="nav.about">About Us</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about.html#who-we-are" data-translate="nav.whoWeAre">Who We Are</a></li>
+                        <li><a href="about.html" data-translate="nav.moreAbout">More About</a></li>
+                    </ul>
+                </li>
+                <li><a href="admission.html" data-translate="nav.admission">Admission</a></li>
+                <li><a href="learning.html" data-translate="nav.learning">Learning</a></li>
+                <li class="dropdown">
+                    <a href="#"><span data-translate="nav.schoolLife">School Life</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="gallery.html" data-translate="nav.gallery">Gallery</a></li>
+                    </ul>
+                </li>
+                <li><a href="faq.html" data-translate="nav.faq" class="active">FAQ</a></li>
+                <li><a href="contact.html" data-translate="nav.contact">Contact Us</a></li>
+                <li><a href="careers.html" data-translate="nav.careers">Careers</a></li>
+            </ul>
+        </nav>
+        <a href="admission.html" class="btn-apply" data-translate="nav.applyNow">APPLY NOW</a>
+        <button class="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</header>
+
+<section class="page-header">
+    <h1 data-translate="faqPage.title">Frequently Asked Questions</h1>
+    <p data-translate="faqPage.subtitle">Find Answers to Common Questions</p>
+</section>
+
+<section class="faq-section">
+    <div class="container">
+        
+        <div class="faq-categories">
+            <button class="category-tab active" data-category="all" data-translate="faqPage.allQuestions">All Questions</button>
+            <button class="category-tab" data-category="admission" data-translate="faqPage.admission">Admission</button>
+            <button class="category-tab" data-category="academic" data-translate="faqPage.academic">Academic</button>
+            <button class="category-tab" data-category="fees" data-translate="faqPage.fees">Fees & Payment</button>
+            <button class="category-tab" data-category="general" data-translate="faqPage.general">General</button>
+        </div>
+
+        <div class="faq-container">
+            
+            <!-- Admission Questions -->
+            <div class="faq-item" data-category="admission">
+                <div class="faq-question">
+                    <h3 data-translate="faqPage.q1">What is the admission process at Bristol Language School?</h3>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p data-translate="faqPage.a1_intro">The admission process includes the following steps:</p>
+                        <ul>
+                            <li data-translate="faqPage.a1_step1">Complete the online application form on our website</li>
+                            <li data-translate="faqPage.a1_step2">Submit required documents (birth certificate, photos, medical records)</li>
+                            <li data-translate="faqPage.a1_step3">Attend an interview with the admissions team</li>
+                            <li data-translate="faqPage.a1_step4">Receive admission decision within 5-7 working days</li>
+                            <li data-translate="faqPage.a1_step5">Complete registration and pay required fees</li>
+                        </ul>
+                        <p data-translate="faqPage.a1_outro">For more details, please visit our Admission page or contact our admissions office.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="admission">
+                <div class="faq-question">
+                    <h3 data-translate="faqPage.q2">What age groups do you accept?</h3>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p data-translate="faqPage.a2">Bristol Language School accepts students from Pre-Kindergarten through Grade 12. We welcome children starting from age 3 up to 18 years old across all educational stages including Kindergarten, Primary, Preparatory, and Secondary levels.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="admission">
+                <div class="faq-question">
+                    <h3 data-translate="faqPage.q3">When can I apply for admission?</h3>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p data-translate="faqPage.a3">We accept applications throughout the year. However, we recommend applying early to secure your child's place. The main admission period is typically from March to June for the upcoming academic year starting in September.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Questions -->
+            <div class="faq-item" data-category="academic">
+                <div class="faq-question">
+                    <h3 data-translate="faqPage.q4">What curriculum does Bristol Language School follow?</h3>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p data-translate="faqPage.a4">We follow an internationally recognized curriculum that combines academic excellence with the Egyptian National Curriculum requirements. Our approach focuses on developing critical thinking, creativity, and global citizenship while respecting local values and culture.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="academic">
+                <div class="faq-question">
+                    <h3 data-translate="faqPage.q5">What is the average class size?</h3>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p data-translate="faqPage.a5">We maintain small class sizes to ensure personalized attention for each student. Our average class size is 20-25 students, allowing teachers to focus on individual learning needs and provide quality education.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="academic">
+                <div class="faq-question">
+                    <h3 data-translate="faqPage.q6">Do you offer extra-curricular activities?</h3>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p data-translate="faqPage.a6_intro">Yes! We offer a wide range of extra-curricular activities including:</p>
+                        <ul>
+                            <li data-translate="faqPage.a6_item1">Sports (football, basketball, swimming)</li>
+                            <li data-translate="faqPage.a6_item2">Arts and crafts</li>
+                            <li data-translate="faqPage.a6_item3">Music and drama</li>
+                            <li data-translate="faqPage.a6_item4">Technology and robotics clubs</li>
+                            <li data-translate="faqPage.a6_item5">Language clubs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fees Questions -->
+            <div class="faq-item" data-category="fees">
+                <div class="faq-question">
+                    <h3 data-translate="faqPage.q7">What are the school fees?</h3>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p data-translate="faqPage.a7">School fees vary depending on the grade level. For detailed information about tuition fees and payment plans, please contact our admissions office at 01212881144 or email Bristollanguagesc@gmail.com. We offer flexible payment options to support families.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="fees">
+                <div class="faq-question">
+                    <h3 data-translate="faqPage.q8">Are there any additional fees besides tuition?</h3>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p data-translate="faqPage.a8_intro">In addition to tuition, there may be fees for:</p>
+                        <ul>
+                            <li data-translate="faqPage.a8_item1">Registration and admission</li>
+                            <li data-translate="faqPage.a8_item2">Books and materials</li>
+                            <li data-translate="faqPage.a8_item3">Uniforms</li>
+                            <li data-translate="faqPage.a8_item4">Transportation (optional)</li>
+                            <li data-translate="faqPage.a8_item5">Extra-curricular activities (optional)</li>
+                        </ul>
+                        <p data-translate="faqPage.a8_outro">A complete breakdown of all fees will be provided during the admission process.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- General Questions -->
+            <div class="faq-item" data-category="general">
+                <div class="faq-question">
+                    <h3 data-translate="faqPage.q9">What are the school hours?</h3>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p data-translate="faqPage.a9">Our regular school hours are Sunday through Thursday, from 8:00 AM to 3:00 PM. The school is closed on Fridays and Saturdays. Specific schedules may vary by grade level.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="general">
+                <div class="faq-question">
+                    <h3 data-translate="faqPage.q10">Do you provide school transportation?</h3>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p data-translate="faqPage.a10">Yes, we offer safe and reliable school bus services covering various areas in New Damietta City. Transportation fees are separate from tuition. Please contact our office for routes and availability.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="general">
+                <div class="faq-question">
+                    <h3 data-translate="faqPage.q11">How can parents communicate with teachers?</h3>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p data-translate="faqPage.a11_intro">We encourage open communication between parents and teachers through:</p>
+                        <ul>
+                            <li data-translate="faqPage.a11_item1">Parent-teacher meetings (scheduled throughout the year)</li>
+                            <li data-translate="faqPage.a11_item2">Email communication</li>
+                            <li data-translate="faqPage.a11_item3">School communication app</li>
+                            <li data-translate="faqPage.a11_item4">Phone calls for urgent matters</li>
+                            <li data-translate="faqPage.a11_item5">Progress reports sent home regularly</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="general">
+                <div class="faq-question">
+                    <h3 data-translate="faqPage.q12">What safety measures are in place?</h3>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p data-translate="faqPage.a12_intro">Student safety is our top priority. We have:</p>
+                        <ul>
+                            <li data-translate="faqPage.a12_item1">Secure campus with controlled entry points</li>
+                            <li data-translate="faqPage.a12_item2">CCTV surveillance throughout the school</li>
+                            <li data-translate="faqPage.a12_item3">Trained security staff on-site</li>
+                            <li data-translate="faqPage.a12_item4">Emergency response procedures</li>
+                            <li data-translate="faqPage.a12_item5">Regular safety drills</li>
+                            <li data-translate="faqPage.a12_item6">Health clinic with qualified nurse</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Contact CTA -->
+        <div class="faq-cta">
+            <h2 data-translate="faqPage.stillQuestions">Still Have Questions?</h2>
+            <p data-translate="faqPage.stillQuestionsText">We're here to help! Contact us for more information</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn-cta">
+                    <i class="fas fa-envelope"></i>
+                    <span data-translate="faqPage.contactUs">Contact Us</span>
+                </a>
+                <a href="admission.html" class="btn-cta">
+                    <i class="fas fa-file-alt"></i>
+                    <span data-translate="faqPage.applyNow">Apply Now</span>
+                </a>
+                <a href="tel:01212881144" class="btn-cta">
+                    <i class="fas fa-phone"></i>
+                    <span data-translate="faqPage.callUs">Call Us</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-col">
+            <h4 data-translate="footer.aboutTitle">ABOUT US</h4>
+            <p data-translate="footer.aboutText">Bristol Language School (BLS) is a private language school located in New Damietta City, Egypt. We are committed to providing modern and effective education that combines academic excellence with personal development.</p>
+        </div>
+        <div class="footer-col">
+            <h4 data-translate="footer.keepInTouch">KEEP IN TOUCH</h4>
+            <div class="footer-social">
+                <a href="https://www.facebook.com/share/1DAwFXqKfG/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@bristol.schools?is_from_webapp=1&sender_device=pc"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p style="margin-top: 20px;">
+                <i class="fas fa-map-marker-alt"></i> First District, Damietta El-Gadeeda City, Damietta Governorate, Egypt
+            </p>
+        </div>
+        <div class="footer-col">
+            <h4 data-translate="footer.contactTitle">CONTACT US</h4>
+            <p>
+                <i class="fas fa-envelope"></i> Bristollanguagesc@gmail.com<br>
+                <i class="fas fa-phone"></i> 01212881144
+            </p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p data-translate="footer.copyright">Copyright © 2024 Bristol School. All Rights Reserved. Designed By KAREEM MOUSA</p>
+    </div>
+</footer>
+
+<a href="index.html" class="back-to-home">
+    <i class="fas fa-home"></i>
+</a>
+
+<a href="#" class="back-to-top">
+    <i class="fas fa-chevron-up"></i>
+</a>
+
+<div class="menu-overlay"></div>
+
+<script src="script.js"></script>
+<script>
+    // FAQ Accordion Functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const faqItem = question.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Toggle current FAQ
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        });
+    });
+
+    // Category Filter Functionality
+    document.querySelectorAll('.category-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active from all tabs
+            document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            const category = tab.dataset.category;
+
+            // Filter FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 10);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+
+            // Close all active FAQs when switching categories
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+        });
+    });
+</script>
+<script src="translations_file.js"></script>
+<script src="language_switcher.js"></script>
+</body>
+</html>
