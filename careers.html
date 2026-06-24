@@ -844,7 +844,7 @@
 
                 <form id="careersForm" action="https://formsubmit.co/SAIFMADOY706@GMAIL.COM" method="POST" enctype="multipart/form-data">
                     
-                    <input type="hidden" name="_subject" value="New Job Application - Bristol Language School">
+                    <input type="hidden" name="_subject" id="emailSubject" value="New Job Application - Bristol Language School">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_next" value="https://bristollanguageschool-bls.netlify.app/thank-you-careers.html">
@@ -1069,6 +1069,15 @@
                     }
                 }
             });
+        });
+
+        // Dynamic email subject based on selected position
+        document.getElementById('position').addEventListener('change', function() {
+            const pos = this.value;
+            const subject = pos
+                ? 'New Application – ' + pos + ' | Bristol Language School'
+                : 'New Job Application - Bristol Language School';
+            document.getElementById('emailSubject').value = subject;
         });
 
         // Form validation for file size
